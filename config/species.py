@@ -20,16 +20,16 @@ SPECIES = {
         'color': (0, 0, 255),
         'initial_count': 300,
         'movement_chance': 0.7,    # Slower movement
-        'reproduction_chance': 0.5,  # Very high reproduction
+        'reproduction_chance': 1,  # Very high reproduction
         'combat_strength': 0.4,    # Weak in combat
         'start_area': (GRID_SIZE//2, 0, GRID_SIZE, GRID_SIZE//2),  # Top-right
     },
     3: {
         'name': 'Green Guardians',
         'color': (0, 255, 0),
-        'initial_count': 200,
+        'initial_count': 50,
         'movement_chance': 0.5,    # Slowest movement
-        'reproduction_chance': 0.01,  # Medium reproduction
+        'reproduction_chance': 0.005,  # Medium reproduction
         'combat_strength': 0.7,    # Strongest in combat
         'start_area': (0, GRID_SIZE//2, GRID_SIZE//2, GRID_SIZE),  # Bottom-left
     },
@@ -39,7 +39,7 @@ SPECIES = {
         'initial_count': 350,
         'movement_chance': 0.8,    # Medium-fast movement
         'reproduction_chance': 0.015,  # Medium-high reproduction
-        'combat_strength': 0.45,   # Medium-weak in combat
+        'combat_strength': 0.39,   # Medium-weak in combat
         'start_area': (GRID_SIZE//2, GRID_SIZE//2, GRID_SIZE, GRID_SIZE),  # Bottom-right
     }
 }

@@ -28,6 +28,7 @@ STATS_TITLE_FONT_SIZE = 18
 STATS_FONT = "Arial"  # Changed from Segoe UI for better compatibility
 STATS_COLOR = (201, 209, 217)  # Softer text color
 STATS_TITLE_COLOR = (255, 255, 255)
+EXTINCT_COLOR = (229, 83, 75)  # Red color for extinct species
 STATS_GRAPH_HEIGHT = 100  # Height for population graphs
 STATS_HISTORY_LENGTH = 100  # Number of data points to keep
 

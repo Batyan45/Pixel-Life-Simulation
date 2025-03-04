@@ -18,6 +18,8 @@ class Simulation:
         self.clock = pygame.time.Clock()
         self.paused = False
         self.simulation_speed = 1.0  # Speed multiplier
+        self.step_count = 0  # Step counter
+        self.extinction_data = {}  # Track when species go extinct
     
     def run(self):
         """Run the main simulation loop."""
@@ -39,12 +41,25 @@ class Simulation:
             # Update simulation state if not paused
             if not self.paused:
                 self.grid.update()
+                self.step_count += 1
             
             # Get current statistics
             stats = self.grid.get_population_stats()
             
+            # Check for extinctions
+            for species_id, count in stats.items():
+                if count == 0 and species_id not in self.extinction_data:
+                    self.extinction_data[species_id] = self.step_count
+            
             # Render current state
-            self.renderer.draw(self.grid.grid, stats, self.simulation_speed, self.paused)
+            self.renderer.draw(
+                self.grid.grid,
+                stats,
+                self.simulation_speed,
+                self.paused,
+                self.step_count,
+                self.extinction_data
+            )
             
             # Control frame rate with speed multiplier
             self.clock.tick(FRAME_RATE * self.simulation_speed)

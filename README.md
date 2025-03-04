@@ -17,6 +17,10 @@ A Python-based pixel simulation of competing species in a configurable grid envi
   - Gradient background
   - Smooth animations and transitions
   - Tooltips for controls
+- Simulation step counter and extinction tracking:
+  - Real-time step count display
+  - Extinction detection and reporting
+  - Historical extinction data
 - Adjustable simulation speed (0.25x to 4.0x)
 - Pause/Resume functionality
 - Toroidal world (wrapping around edges)
@@ -91,6 +95,7 @@ STATS_UPDATE_RATE = 30  # Stats update frequency
 STATS_GRAPH_HEIGHT = 100  # Height of population graph
 ENABLE_ANTIALIASING = True  # Smooth graphics
 SHOW_GRID = False  # Grid lines visibility
+EXTINCT_COLOR = (229, 83, 75)  # Red color for extinct species
 ```
 
 ### Grid Settings (`config/grid.py`)
@@ -167,6 +172,8 @@ To modify the simulation:
 - Window size: 800x800 pixels + 240px control panel
 - Modern dark theme with gradient background
 - Interactive population graph with 100 data points history
+- Real-time step counter in title bar
+- Extinction tracking with step number display
 - Grid size: 100x100 cells
 - Cell size: 8x8 pixels
 - Base frame rate: 30 FPS

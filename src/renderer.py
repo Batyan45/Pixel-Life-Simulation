@@ -18,7 +18,8 @@ from config import (
     STATS_GRAPH_HEIGHT, STATS_HISTORY_LENGTH,
     TOOLTIP_BACKGROUND, TOOLTIP_TEXT_COLOR, TOOLTIP_PADDING,
     TOOLTIP_FONT_SIZE, TOOLTIP_DELAY, BUTTON_DISABLED_COLOR,
-    SLIDER_HOVER_COLOR, HOVER_TRANSITION_SPEED, SHOW_GRID
+    SLIDER_HOVER_COLOR, HOVER_TRANSITION_SPEED, SHOW_GRID,
+    EXTINCT_COLOR
 )
 from src.ui.button import Button
 from src.ui.tooltip import Tooltip
@@ -74,7 +75,7 @@ class Renderer:
         # Create gradient surface
         self.gradient_surface = self._create_gradient_surface()
         
-    def draw(self, grid, stats, speed, paused):
+    def draw(self, grid, stats, speed, paused, step_count, extinction_data):
         """Draw the current state of the simulation."""
         # Draw gradient background
         self.screen.blit(self.gradient_surface, (0, 0))
@@ -96,8 +97,8 @@ class Renderer:
                     self.population_history[species_id].pop(0)
         
         # Draw UI elements with modern styling
-        self._draw_title_bar(paused)
-        self._draw_control_panel(stats, speed)
+        self._draw_title_bar(paused, step_count)
+        self._draw_control_panel(stats, speed, extinction_data)
         
         # Combine surfaces with proper alpha blending
         self.screen.blit(self.title_bar, (0, 0))
@@ -157,7 +158,7 @@ class Renderer:
                     else:
                         pygame.draw.rect(self.simulation_surface, color, rect)
     
-    def _draw_title_bar(self, paused):
+    def _draw_title_bar(self, paused, step_count):
         """Draw the title bar with modern styling."""
         # Draw semi-transparent background
         pygame.draw.rect(
@@ -166,8 +167,8 @@ class Renderer:
             (0, 0, WINDOW_SIZE + CONTROL_PANEL_WIDTH, TITLE_BAR_HEIGHT)
         )
         
-        # Draw title
-        title_text = f"{WINDOW_TITLE} {'(Paused)' if paused else ''}"
+        # Draw title with step count (removed dash)
+        title_text = f"{WINDOW_TITLE} {'(Paused)' if paused else ''} Step: {step_count:,}"
         title = self.title_font.render(title_text, True, STATS_TITLE_COLOR)
         self.title_bar.blit(title, (PADDING, (TITLE_BAR_HEIGHT - title.get_height()) // 2))
         
@@ -179,7 +180,7 @@ class Renderer:
             (WINDOW_SIZE + CONTROL_PANEL_WIDTH, TITLE_BAR_HEIGHT - 1)
         )
     
-    def _draw_control_panel(self, stats, speed):
+    def _draw_control_panel(self, stats, speed, extinction_data):
         """Draw the control panel with modern styling."""
         # Draw panel background with rounded corners
         panel_rect = pygame.Rect(0, 0, CONTROL_PANEL_WIDTH, WINDOW_SIZE)
@@ -214,14 +215,19 @@ class Renderer:
                     species_data['color']
                 )
                 
-                # Draw species name and count with shadow
+                # Draw species name and count
                 text = f"{species_data['name']}: {count:,}"
-                text_shadow = self.stats_font.render(text, True, (0, 0, 0, 100))
-                text_surface = self.stats_font.render(text, True, STATS_COLOR)
+                if count == 0:
+                    extinction_step = extinction_data.get(species_id, 0)
+                    # Show extinction info on the same line
+                    text += f" (†{extinction_step:,})"
+                    text_surface = self.stats_font.render(text, True, EXTINCT_COLOR)
+                    self.control_panel.blit(text_surface, (PADDING + 20, y_offset))
+                else:
+                    text_surface = self.stats_font.render(text, True, STATS_COLOR)
+                    self.control_panel.blit(text_surface, (PADDING + 20, y_offset))
                 
-                self.control_panel.blit(text_shadow, (PADDING + 20, y_offset + 1))
-                self.control_panel.blit(text_surface, (PADDING + 20, y_offset))
-                y_offset += 25
+                y_offset += text_surface.get_height() + PADDING
         
         y_offset += PADDING
         
