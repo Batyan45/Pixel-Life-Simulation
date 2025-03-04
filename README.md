@@ -81,8 +81,16 @@ Combat is resolved using relative strength values:
 
 ## Project Structure
 
-- `simulation.py` - Main simulation logic and visualization
-- `config.py` - Configuration file with all adjustable parameters
+- `src/` - Source code directory
+  - `simulation.py` - Main simulation logic
+  - `grid.py` - Grid management and species behavior
+  - `renderer.py` - Visualization and display
+- `config/` - Configuration files
+  - `display.py` - Display settings
+  - `grid.py` - Grid parameters
+  - `simulation.py` - Simulation parameters
+  - `species.py` - Species characteristics
+- `main.py` - Entry point for the simulation
 - `requirements.txt` - Python dependencies
 
 ## Requirements
@@ -103,7 +111,7 @@ pip install -r requirements.txt
 
 To run the simulation:
 ```bash
-python simulation.py
+python main.py
 ```
 
 ## Controls

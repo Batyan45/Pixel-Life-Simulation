@@ -1,12 +1,8 @@
 """
-Configuration file for the life simulation parameters
+Species configuration parameters.
 """
 
-# Grid parameters
-GRID_SIZE = 100
-CELL_SIZE = 8
-WINDOW_SIZE = GRID_SIZE * CELL_SIZE
-FRAME_RATE = 30
+from .grid import GRID_SIZE
 
 # Species definitions
 SPECIES = {
@@ -48,23 +44,5 @@ SPECIES = {
     }
 }
 
-SPECIES_COUNT = len(SPECIES)
-
-# Display settings
-WINDOW_TITLE = "Life Simulation"
-SHOW_GRID = False
-GRID_COLOR = (50, 50, 50)  # Dark gray
-BACKGROUND_COLOR = (0, 0, 0)  # Black
-
-# Movement settings
-MOVEMENT_DIRECTIONS = [
-    (-1, -1), (-1, 0), (-1, 1),
-    (0, -1),           (0, 1),
-    (1, -1),  (1, 0),  (1, 1)
-]
-
-# Statistics settings
-SHOW_STATS = True  # Show population statistics
-STATS_UPDATE_RATE = 30  # Update stats every N frames
-STATS_FONT_SIZE = 20
-STATS_COLOR = (255, 255, 255)  # White 
+# Total number of species
+SPECIES_COUNT = len(SPECIES) 
