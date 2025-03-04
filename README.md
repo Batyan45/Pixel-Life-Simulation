@@ -46,17 +46,25 @@ A Python-based pixel simulation of competing species in a configurable grid envi
 
 ## Configuration
 
-All simulation parameters can be adjusted in `config.py`:
+The simulation parameters are organized in the `config` directory:
 
-### Grid Settings
+### Display Settings (`config/display.py`)
 ```python
-GRID_SIZE = 100        # Size of the simulation grid
-CELL_SIZE = 8         # Size of each cell in pixels
-FRAME_RATE = 30       # Simulation speed
+WINDOW_SIZE = 800     # Window dimensions in pixels
+SHOW_GRID = False     # Show grid lines
+SHOW_STATS = True     # Show population statistics
+STATS_UPDATE_RATE = 30  # Stats update frequency
 ```
 
-### Species Settings
-Each species can be configured with:
+### Grid Settings (`config/grid.py`)
+```python
+GRID_SIZE = 100      # Size of the simulation grid
+CELL_SIZE = 8        # Size of each cell in pixels
+FRAME_RATE = 30      # Simulation speed
+```
+
+### Species Settings (`config/species.py`)
+Each species is configured with:
 - `name`: Display name
 - `color`: RGB color tuple
 - `initial_count`: Starting population
@@ -65,12 +73,8 @@ Each species can be configured with:
 - `combat_strength`: Relative strength in combat (0-1)
 - `start_area`: Starting area coordinates (x1, y1, x2, y2)
 
-### Display Settings
-```python
-SHOW_GRID = False     # Show grid lines
-SHOW_STATS = True     # Show population statistics
-STATS_UPDATE_RATE = 30  # Stats update frequency
-```
+### Simulation Settings (`config/simulation.py`)
+Global simulation parameters and behavior settings.
 
 ## Combat System
 
@@ -81,17 +85,20 @@ Combat is resolved using relative strength values:
 
 ## Project Structure
 
-- `src/` - Source code directory
-  - `simulation.py` - Main simulation logic
-  - `grid.py` - Grid management and species behavior
-  - `renderer.py` - Visualization and display
-- `config/` - Configuration files
-  - `display.py` - Display settings
-  - `grid.py` - Grid parameters
-  - `simulation.py` - Simulation parameters
-  - `species.py` - Species characteristics
-- `main.py` - Entry point for the simulation
-- `requirements.txt` - Python dependencies
+```
+.
+├── src/                    # Source code directory
+│   ├── simulation.py       # Main simulation logic
+│   ├── grid.py            # Grid management and species behavior
+│   └── renderer.py        # Visualization and display
+├── config/                 # Configuration directory
+│   ├── display.py         # Display settings
+│   ├── grid.py           # Grid parameters
+│   ├── simulation.py      # Simulation parameters
+│   └── species.py        # Species characteristics
+├── main.py                # Entry point
+└── requirements.txt       # Python dependencies
+```
 
 ## Requirements
 
@@ -123,20 +130,23 @@ python main.py
 
 To modify the simulation:
 
-1. Edit species characteristics in `config.py`:
+1. Edit species characteristics in `config/species.py`:
    - Adjust movement speeds
    - Change reproduction rates
    - Modify combat strengths
    - Change starting positions and populations
 
-2. Adjust display settings:
-   - Grid size and cell size
-   - Frame rate
+2. Adjust display settings in `config/display.py`:
+   - Window size
    - Statistics display
    - Grid lines visibility
 
-3. Add new species:
-   - Add a new entry to the SPECIES dictionary
+3. Modify grid settings in `config/grid.py`:
+   - Grid size and cell size
+   - Frame rate
+
+4. Add new species:
+   - Add a new entry to the species configuration in `config/species.py`
    - Define characteristics and starting area
    - The simulation will automatically handle the new species
 
