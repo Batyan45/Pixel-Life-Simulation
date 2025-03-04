@@ -10,9 +10,10 @@ A Python-based pixel simulation of competing species in a configurable grid envi
   - Reproduction rate
   - Combat strength
 - Population statistics display
-- Customizable starting positions and initial populations
+- Adjustable simulation speed (0.25x to 4.0x)
+- Pause/Resume functionality
 - Toroidal world (wrapping around edges)
-- Optional grid lines display
+- Modern UI with anti-aliased graphics
 
 ## Species
 
@@ -44,6 +45,33 @@ A Python-based pixel simulation of competing species in a configurable grid envi
 - Starting position: Bottom-right
 - Strategy: Balanced approach to survival
 
+## Controls
+
+- **Space**: Pause/Resume simulation
+- **ESC**: Exit simulation
+- **Speed Controls**:
+  - "- Slower": Decrease simulation speed (minimum 0.25x)
+  - "+ Faster": Increase simulation speed (maximum 4.0x)
+
+## Project Structure
+
+```
+.
+├── src/                    # Source code directory
+│   ├── simulation.py       # Main simulation logic
+│   ├── grid.py            # Grid management and species behavior
+│   ├── renderer.py        # Visualization and display
+│   └── ui/                # UI components
+│       └── button.py      # Button class implementation
+├── config/                 # Configuration directory
+│   ├── display.py         # Display settings
+│   ├── grid.py           # Grid parameters
+│   ├── simulation.py      # Simulation parameters
+│   └── species.py        # Species characteristics
+├── main.py                # Entry point
+└── requirements.txt       # Python dependencies
+```
+
 ## Configuration
 
 The simulation parameters are organized in the `config` directory:
@@ -51,8 +79,6 @@ The simulation parameters are organized in the `config` directory:
 ### Display Settings (`config/display.py`)
 ```python
 WINDOW_SIZE = 800     # Window dimensions in pixels
-SHOW_GRID = False     # Show grid lines
-SHOW_STATS = True     # Show population statistics
 STATS_UPDATE_RATE = 30  # Stats update frequency
 ```
 
@@ -60,7 +86,7 @@ STATS_UPDATE_RATE = 30  # Stats update frequency
 ```python
 GRID_SIZE = 100      # Size of the simulation grid
 CELL_SIZE = 8        # Size of each cell in pixels
-FRAME_RATE = 30      # Simulation speed
+FRAME_RATE = 30      # Base simulation speed
 ```
 
 ### Species Settings (`config/species.py`)
@@ -73,32 +99,12 @@ Each species is configured with:
 - `combat_strength`: Relative strength in combat (0-1)
 - `start_area`: Starting area coordinates (x1, y1, x2, y2)
 
-### Simulation Settings (`config/simulation.py`)
-Global simulation parameters and behavior settings.
-
 ## Combat System
 
 Combat is resolved using relative strength values:
 - When two creatures meet, their combat strengths are compared
 - Victory probability = attacker_strength / (attacker_strength + defender_strength)
 - Winner takes over the cell, loser is eliminated
-
-## Project Structure
-
-```
-.
-├── src/                    # Source code directory
-│   ├── simulation.py       # Main simulation logic
-│   ├── grid.py            # Grid management and species behavior
-│   └── renderer.py        # Visualization and display
-├── config/                 # Configuration directory
-│   ├── display.py         # Display settings
-│   ├── grid.py           # Grid parameters
-│   ├── simulation.py      # Simulation parameters
-│   └── species.py        # Species characteristics
-├── main.py                # Entry point
-└── requirements.txt       # Python dependencies
-```
 
 ## Requirements
 
@@ -121,11 +127,6 @@ To run the simulation:
 python main.py
 ```
 
-## Controls
-
-- ESC: Exit the simulation
-- Close window button: Exit the simulation
-
 ## Customization
 
 To modify the simulation:
@@ -139,11 +140,11 @@ To modify the simulation:
 2. Adjust display settings in `config/display.py`:
    - Window size
    - Statistics display
-   - Grid lines visibility
+   - UI colors and fonts
 
 3. Modify grid settings in `config/grid.py`:
    - Grid size and cell size
-   - Frame rate
+   - Base frame rate
 
 4. Add new species:
    - Add a new entry to the species configuration in `config/species.py`
@@ -155,5 +156,5 @@ To modify the simulation:
 - Window size: 800x800 pixels
 - Grid size: 100x100 cells
 - Cell size: 8x8 pixels
-- Frame rate: 30 FPS
-- Initial population: 300 creatures per species 
+- Base frame rate: 30 FPS
+- Initial population: 300-400 creatures per species 
