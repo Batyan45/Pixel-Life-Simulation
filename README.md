@@ -2,6 +2,8 @@
 
 A Python-based pixel simulation of competing species in a configurable grid environment. The simulation demonstrates artificial life concepts including movement, reproduction, and competition between different species with unique characteristics and behaviors.
 
+![Pixel Life Simulation](docs/images/image.png)
+
 ## Features
 
 - Configurable grid environment
