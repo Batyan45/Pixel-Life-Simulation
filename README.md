@@ -11,11 +11,16 @@ A Python-based pixel simulation of competing species in a configurable grid envi
   - Movement speed
   - Reproduction rate
   - Combat strength
-- Population statistics display
+- Real-time population statistics with interactive graph
+- Modern UI with dark theme and anti-aliasing:
+  - Population trends visualization
+  - Gradient background
+  - Smooth animations and transitions
+  - Tooltips for controls
 - Adjustable simulation speed (0.25x to 4.0x)
 - Pause/Resume functionality
 - Toroidal world (wrapping around edges)
-- Modern UI with anti-aliased graphics
+- Toggleable grid lines
 
 ## Species
 
@@ -54,6 +59,7 @@ A Python-based pixel simulation of competing species in a configurable grid envi
 - **Speed Controls**:
   - "- Slower": Decrease simulation speed (minimum 0.25x)
   - "+ Faster": Increase simulation speed (maximum 4.0x)
+- **Grid**: Toggle grid lines visibility
 
 ## Project Structure
 
@@ -82,6 +88,9 @@ The simulation parameters are organized in the `config` directory:
 ```python
 WINDOW_SIZE = 800     # Window dimensions in pixels
 STATS_UPDATE_RATE = 30  # Stats update frequency
+STATS_GRAPH_HEIGHT = 100  # Height of population graph
+ENABLE_ANTIALIASING = True  # Smooth graphics
+SHOW_GRID = False  # Grid lines visibility
 ```
 
 ### Grid Settings (`config/grid.py`)
@@ -155,7 +164,9 @@ To modify the simulation:
 
 ## Technical Details
 
-- Window size: 800x800 pixels
+- Window size: 800x800 pixels + 240px control panel
+- Modern dark theme with gradient background
+- Interactive population graph with 100 data points history
 - Grid size: 100x100 cells
 - Cell size: 8x8 pixels
 - Base frame rate: 30 FPS

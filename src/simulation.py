@@ -60,6 +60,7 @@ class Simulation:
                 self.simulation_speed = max(0.25, self.simulation_speed - 0.25)
             elif action == "faster":
                 self.simulation_speed = min(4.0, self.simulation_speed + 0.25)
+            # No need to handle "toggle_grid" as it's handled internally by the renderer
 
 if __name__ == "__main__":
     simulation = Simulation()
