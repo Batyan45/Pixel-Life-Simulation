@@ -28,33 +28,33 @@ A Python-based pixel simulation of competing species in a configurable grid envi
 
 ## Species
 
-### Red Runners
-- Fast movement
-- Strong in combat
-- Low reproduction rate
+### Sprinters
+- Fastest movement in the simulation
+- Below average combat ability
+- Very low reproduction rate
 - Starting position: Top-left
-- Strategy: Relies on speed and strength to dominate
+- Strategy: Relies on superior speed to survive and find opportunities
 
-### Blue Breeders
-- Moderate movement
-- Weak in combat
-- High reproduction rate
+### Swarmers
+- High mobility
+- Medium combat ability
+- Explosive reproduction rate
 - Starting position: Top-right
-- Strategy: Overwhelms through rapid reproduction
+- Strategy: Dominates through overwhelming numbers and rapid expansion
 
-### Green Guardians
-- Slow movement
-- Strongest in combat
-- Medium reproduction rate
+### Warriors
+- Low mobility
+- Superior combat strength
+- Very low reproduction rate
 - Starting position: Bottom-left
-- Strategy: Dominates through superior combat strength
+- Strategy: Controls territory through combat superiority
 
-### Yellow Yielders
-- Medium-fast movement
+### Scouts
+- Very high mobility
 - Balanced combat ability
-- Medium-high reproduction rate
+- Low-medium reproduction rate
 - Starting position: Bottom-right
-- Strategy: Balanced approach to survival
+- Strategy: Adaptable approach with focus on mobility
 
 ## Controls
 
